@@ -41,6 +41,7 @@ htmlcov/
 .coverage
 .coverage.*
 .cache
+.pytest_cache
 nosetests.xml
 coverage.xml
 *.cover
@@ -99,3 +100,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# sqlite database
+*.sqlite3

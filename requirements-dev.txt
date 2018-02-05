@@ -1,0 +1,7 @@
+-r requirements.txt
+django>=1.11,<2.0
+pytest
+pytest-cov
+pytest-django
+twine
+wheel

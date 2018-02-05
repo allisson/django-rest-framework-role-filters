@@ -1,0 +1,17 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+env:
+  - DRF_VERSION=3.7.7
+  - DRF_VERSION=3.6.4
+  - DRF_VERSION=3.5.4
+# command to install dependencies
+install:
+  - pip install -r requirements-dev.txt
+  - pip install -q djangorestframework==$DRF_VERSION
+# command to run tests
+script:
+  cd testproject && pytest
