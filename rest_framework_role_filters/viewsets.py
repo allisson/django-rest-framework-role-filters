@@ -19,7 +19,7 @@ class RoleFilterModelViewSet(ModelViewSet):
 
     def get_queryset(self):
         queryset = super(RoleFilterModelViewSet, self).get_queryset()
-        return self.role_filter_group.get_queryset(self.role_id, self.request, self, queryset)
+        return self.role_filter_group.get_queryset(self.role_id, self.request, self, queryset) or queryset
 
     def get_serializer_class(self):
         serializer_class = super(RoleFilterModelViewSet, self).get_serializer_class()

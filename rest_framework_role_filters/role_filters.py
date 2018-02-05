@@ -9,7 +9,7 @@ class RoleFilter:
         return ['create', 'list', 'retrieve', 'update', 'partial_update', 'destroy']
 
     def get_queryset(self, request, view, queryset):
-        return queryset
+        return
 
     def get_serializer_class(self, request, view):
         return
