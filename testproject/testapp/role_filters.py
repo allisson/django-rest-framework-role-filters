@@ -1,5 +1,7 @@
 from rest_framework_role_filters.role_filters import RoleFilter
 
+from .serializers import PostSerializerForUser
+
 
 class AdminRoleFilter(RoleFilter):
     role_id = 'admin'
@@ -14,3 +16,6 @@ class UserRoleFilter(RoleFilter):
     def get_queryset(self, request, view, queryset):
         queryset = queryset.filter(user=request.user)
         return queryset
+
+    def get_serializer_class(self, request, view):
+        return PostSerializerForUser

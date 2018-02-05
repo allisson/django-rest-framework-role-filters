@@ -23,3 +23,20 @@ class PostSerializer(ModelSerializer):
     def validate(self, data):
         data['user'] = self.context['request'].user
         return data
+
+
+class PostSerializerForUser(PostSerializer):
+    class Meta:
+        model = Post
+        fields = (
+            'body',
+            'created_at',
+            'id',
+            'title',
+            'updated_at',
+            'user',
+        )
+        read_only_fields = (
+            'id',
+            'user',
+        )

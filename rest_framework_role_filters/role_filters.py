@@ -11,6 +11,9 @@ class RoleFilter:
     def get_queryset(self, request, view, queryset):
         return queryset
 
+    def get_serializer_class(self, request, view):
+        return
+
 
 class RoleFilterGroup:
     def __init__(self, role_filters):
@@ -30,3 +33,6 @@ class RoleFilterGroup:
 
     def get_queryset(self, role_id, request, view, queryset):
         return self.trigger_filter('get_queryset', role_id, request, view, queryset)
+
+    def get_serializer_class(self, role_id, request, view):
+        return self.trigger_filter('get_serializer_class', role_id, request, view)
