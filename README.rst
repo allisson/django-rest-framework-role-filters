@@ -7,6 +7,15 @@ django-rest-framework-role-filters
 .. image:: https://codecov.io/gh/allisson/django-rest-framework-role-filters/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/allisson/django-rest-framework-role-filters
 
+.. image:: https://img.shields.io/pypi/v/djangorestframework-role-filters.svg
+        :target: https://pypi.python.org/pypi/djangorestframework-role-filters
+
+.. image:: https://img.shields.io/github/license/allisson/django-rest-framework-role-filters.svg
+        :target: https://pypi.python.org/pypi/django-pagseguro2
+
+.. image:: https://img.shields.io/pypi/pyversions/djangorestframework-role-filters.svg
+        :target: https://pypi.python.org/pypi/djangorestframework-role-filters
+
 How to install
 --------------
 
