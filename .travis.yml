@@ -15,3 +15,5 @@ install:
 # command to run tests
 script:
   cd testproject && pytest
+after_success:
+  codecov
