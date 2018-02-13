@@ -19,3 +19,15 @@ class UserRoleFilter(RoleFilter):
 
     def get_serializer_class(self, request, view):
         return PostSerializerForUser
+
+    def get_serializer(self, request, view, serializer_class, *args, **kwargs):
+        fields = (
+            'body',
+            'created_at',
+            'id',
+            'serializer_name',
+            'title',
+            'updated_at',
+            'user',
+        )
+        return serializer_class(*args, fields=fields, **kwargs)

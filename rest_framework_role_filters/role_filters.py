@@ -14,6 +14,9 @@ class RoleFilter:
     def get_serializer_class(self, request, view):
         return
 
+    def get_serializer(self, request, view, serializer_class, *args, **kwargs):
+        return
+
 
 class RoleFilterGroup:
     def __init__(self, role_filters):
@@ -36,3 +39,6 @@ class RoleFilterGroup:
 
     def get_serializer_class(self, role_id, request, view):
         return self.trigger_filter('get_serializer_class', role_id, request, view)
+
+    def get_serializer(self, role_id, request, view, serializer_class, *args, **kwargs):
+        return self.trigger_filter('get_serializer', role_id, request, view, serializer_class, *args, **kwargs)

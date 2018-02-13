@@ -23,6 +23,11 @@ How to install
 
     pip install djangorestframework-role-filters
 
+Why i wrote this project?
+-------------------------
+
+I want work easily with roles without multiple ifs in code.
+
 How to use
 ----------
 
@@ -52,6 +57,18 @@ Create role_filters.py with your roles definitions
         def get_serializer_class(self, request, view):
             return PostSerializerForUser
 
+        def get_serializer(self, request, view, serializer_class, *args, **kwargs):
+            fields = (
+                'body',
+                'created_at',
+                'id',
+                'serializer_name',
+                'title',
+                'updated_at',
+                'user',
+            )
+            return serializer_class(*args, fields=fields, **kwargs)
+
 Create viewset and override get_role_id method
 
 .. code:: python
@@ -80,11 +97,13 @@ If role_id is 'admin':
 * All actions is allowed
 * The default queryset is returned - Post.objects.all()
 * The default serializer_class is used - PostSerializer
+* The default viewset get_serializer method is used
 
 If role_id is 'user':
 
 * Only actions 'create', 'list', 'retrieve', 'update', 'partial_update' is allowed
 * The queryset is filtered by user
 * The serializer_class PostSerializerForUser is used
+* The serializer init with fields kwargs
 
 Check `testapp example <https://github.com/allisson/django-rest-framework-role-filters/tree/master/testproject/testapp>`_ code implementation.
