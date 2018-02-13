@@ -26,7 +26,7 @@ How to install
 Why i wrote this project?
 -------------------------
 
-I want work easily with roles without multiple ifs in code.
+I want work easily with roles without multiple ifs in code
 
 How to use
 ----------
