@@ -104,6 +104,6 @@ If role_id is 'user':
 * Only actions 'create', 'list', 'retrieve', 'update', 'partial_update' is allowed
 * The queryset is filtered by user
 * The serializer_class PostSerializerForUser is used
-* The serializer init with fields kwargs
+* The serializer initializing with fields kwargs
 
 Check `testapp example <https://github.com/allisson/django-rest-framework-role-filters/tree/master/testproject/testapp>`_ code implementation.
