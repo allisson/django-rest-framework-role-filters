@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.2.1
+~~~~~
+
+* Update RoleFilterModelViewSet to check returned value from role filter (Fixes #1).
+
 0.2.0
 ~~~~~
 
