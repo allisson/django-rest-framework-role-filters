@@ -19,13 +19,26 @@ class RoleFilterModelViewSet(ModelViewSet):
 
     def get_queryset(self):
         queryset = super(RoleFilterModelViewSet, self).get_queryset()
-        return self.role_filter_group.get_queryset(self.role_id, self.request, self, queryset) or queryset
+        filtered_queryset = self.role_filter_group.get_queryset(self.role_id, self.request, self, queryset)
+        if filtered_queryset is None:
+            return queryset
+        return filtered_queryset
 
     def get_serializer_class(self):
         serializer_class = super(RoleFilterModelViewSet, self).get_serializer_class()
-        return self.role_filter_group.get_serializer_class(self.role_id, self.request, self) or serializer_class
+        filtered_serializer_class = self.role_filter_group.get_serializer_class(
+            self.role_id, self.request, self
+        )
+        if filtered_serializer_class is None:
+            return serializer_class
+        return filtered_serializer_class
 
     def get_serializer(self, *args, **kwargs):
         serializer_class = self.get_serializer_class()
         kwargs['context'] = self.get_serializer_context()
-        return self.role_filter_group.get_serializer(self.role_id, self.request, self, serializer_class, *args, **kwargs) or serializer_class(*args, **kwargs)
+        filtered_serializer = self.role_filter_group.get_serializer(
+            self.role_id, self.request, self, serializer_class, *args, **kwargs
+        )
+        if filtered_serializer is None:
+            return serializer_class(*args, **kwargs)
+        return filtered_serializer
