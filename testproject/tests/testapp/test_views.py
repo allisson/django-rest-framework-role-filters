@@ -16,6 +16,13 @@ def test_get_allowed_actions(
     assert response.data == {'detail': 'action=destroy not allowed for role=user'}
 
 
+def test_get_allowed_actions_with_no_declared_role_inside_view(
+        post1, user_with_no_declared_role_in_view, client_user_logged):
+    response = client_user_logged.delete(reverse('testapp:posts-detail', args=[post1.id]))
+    assert response.status_code == status.HTTP_403_FORBIDDEN
+    assert response.data == {'detail': 'action=destroy not allowed for role=no_post_access'}
+
+
 def test_get_queryset(
         post1, post2, user_with_admin_role, user_with_user_role,
         client_admin_logged, client_user_logged):

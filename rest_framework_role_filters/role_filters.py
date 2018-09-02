@@ -32,7 +32,10 @@ class RoleFilterGroup:
         return role_filter.trigger_filter(filter_name, *args, **kwargs)
 
     def get_allowed_actions(self, role_id, request, view):
-        return self.trigger_filter('get_allowed_actions', role_id, request, view)
+        allowed_actions = self.trigger_filter('get_allowed_actions', role_id, request, view)
+        if allowed_actions is None:
+            return []
+        return allowed_actions
 
     def get_queryset(self, role_id, request, view, queryset):
         return self.trigger_filter('get_queryset', role_id, request, view, queryset)
