@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.2.2
+~~~~~
+
+* Handle not declared role inside a view.
+
 0.2.1
 ~~~~~
 
