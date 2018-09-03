@@ -20,6 +20,13 @@ def user_with_user_role(django_user_model):
 
 
 @pytest.fixture
+def user_with_no_declared_role_in_view(django_user_model):
+    user = django_user_model.objects.create_user('user', 'user@email.com', '123456')
+    UserRole.objects.create(user=user, role_id='no_post_access')
+    return user
+
+
+@pytest.fixture
 def client_admin_logged(client):
     client = APIClient()
     client.login(username='admin', password='123456')
