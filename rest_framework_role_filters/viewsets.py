@@ -3,6 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 
 class RoleFilterModelViewSet(ModelViewSet):
     role_filter_group = None
+    role_id = None
 
     def get_role_id(self, request):
         pass
