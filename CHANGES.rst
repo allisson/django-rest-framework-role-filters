@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.2.3
+~~~~~
+
+* Add role_id to RoleFilterModelViewSet (fix drf docs pages).
+
 0.2.2
 ~~~~~
 
