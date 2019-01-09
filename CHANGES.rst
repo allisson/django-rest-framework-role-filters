@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.2.4
+~~~~~
+
+* using mixin approach for RoleFilterModelViewSet: code moved to RoleFilterMixin
+
 0.2.3
 ~~~~~
 

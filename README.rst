@@ -94,16 +94,16 @@ Create viewset and override get_role_id method
 
 If role_id is 'admin':
 
-* All actions is allowed
-* The default queryset is returned - Post.objects.all()
-* The default serializer_class is used - PostSerializer
-* The default viewset get_serializer method is used
+* All actions are allowed
+* The default queryset is returned - :code:`Post.objects.all()`
+* The default :code:`serializer_class` is used - :code:`PostSerializer`
+* The default viewset :code:`get_serializer` method is used
 
 If role_id is 'user':
 
-* Only actions 'create', 'list', 'retrieve', 'update', 'partial_update' is allowed
+* Only actions 'create', 'list', 'retrieve', 'update', 'partial_update' are allowed
 * The queryset is filtered by user
-* The serializer_class PostSerializerForUser is used
-* The serializer initializing with fields kwargs
+* The :code:`serializer_class=PostSerializerForUser` is used
+* The serializer initializing with :code:`fields` kwargs
 
 Check `testapp example <https://github.com/allisson/django-rest-framework-role-filters/tree/master/testproject/testapp>`_ code implementation.

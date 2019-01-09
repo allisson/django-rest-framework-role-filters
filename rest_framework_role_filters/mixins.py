@@ -1,7 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
 
+__all__ = [
+    'RoleFilterMixin',
+    'RoleFilterModelViewSet'
+]
 
-class RoleFilterModelViewSet(ModelViewSet):
+
+class RoleFilterMixin(object):
     role_filter_group = None
     role_id = None
 
@@ -9,7 +14,7 @@ class RoleFilterModelViewSet(ModelViewSet):
         pass
 
     def initial(self, request, *args, **kwargs):
-        super(RoleFilterModelViewSet, self).initial(request, *args, **kwargs)
+        super(RoleFilterMixin, self).initial(request, *args, **kwargs)
         self.role_id = self.get_role_id(request)
         allowed_actions = self.role_filter_group.get_allowed_actions(self.role_id, request, self)
         if self.action not in allowed_actions:
@@ -19,14 +24,14 @@ class RoleFilterModelViewSet(ModelViewSet):
             )
 
     def get_queryset(self):
-        queryset = super(RoleFilterModelViewSet, self).get_queryset()
+        queryset = super(RoleFilterMixin, self).get_queryset()
         filtered_queryset = self.role_filter_group.get_queryset(self.role_id, self.request, self, queryset)
         if filtered_queryset is None:
             return queryset
         return filtered_queryset
 
     def get_serializer_class(self):
-        serializer_class = super(RoleFilterModelViewSet, self).get_serializer_class()
+        serializer_class = super(RoleFilterMixin, self).get_serializer_class()
         filtered_serializer_class = self.role_filter_group.get_serializer_class(
             self.role_id, self.request, self
         )
@@ -43,3 +48,7 @@ class RoleFilterModelViewSet(ModelViewSet):
         if filtered_serializer is None:
             return serializer_class(*args, **kwargs)
         return filtered_serializer
+
+
+class RoleFilterModelViewSet(RoleFilterMixin, ModelViewSet):
+    pass
