@@ -1,3 +1,8 @@
+import warnings
+
+__all__ = ['RoleFilterMixin']
+
+
 class RoleFilterMixin(object):
     role_filter_group = None
     role_id = None
@@ -40,3 +45,13 @@ class RoleFilterMixin(object):
         if filtered_serializer is None:
             return serializer_class(*args, **kwargs)
         return filtered_serializer
+
+    def check_object_permissions(self, request, obj):
+        super(RoleFilterMixin, self).check_object_permissions(request, obj)
+
+        allowed_actions = self.role_filter_group.get_allowed_actions(self.role_id, request, self, obj=obj)
+        if self.action not in allowed_actions:
+            self.permission_denied(
+                request,
+                message='action={} not allowed for role={}'.format(self.action, self.role_id)
+            )

@@ -27,6 +27,20 @@ def user_with_no_declared_role_in_view(django_user_model):
 
 
 @pytest.fixture
+def user_with_obj_level_role_in_view(django_user_model):
+    user = django_user_model.objects.create_user('user', 'user@email.com', '123456')
+    UserRole.objects.create(user=user, role_id='obj_level_user')
+    return user
+
+
+@pytest.fixture
+def user_with_deprecated_role_in_view(django_user_model):
+    user = django_user_model.objects.create_user('user', 'user@email.com', '123456')
+    UserRole.objects.create(user=user, role_id='deprecated_user')
+    return user
+
+
+@pytest.fixture
 def client_admin_logged(client):
     client = APIClient()
     client.login(username='admin', password='123456')
@@ -53,6 +67,24 @@ def post1(user_with_admin_role):
 def post2(user_with_user_role):
     return Post.objects.create(
         user=user_with_user_role,
+        title='My Post Title',
+        body='My Post Body'
+    )
+
+
+@pytest.fixture
+def post3(user_with_obj_level_role_in_view):
+    return Post.objects.create(
+        user=user_with_obj_level_role_in_view,
+        title='My Post Title',
+        body='My Post Body'
+    )
+
+
+@pytest.fixture
+def post4(user_with_deprecated_role_in_view):
+    return Post.objects.create(
+        user=user_with_deprecated_role_in_view,
         title='My Post Title',
         body='My Post Body'
     )
