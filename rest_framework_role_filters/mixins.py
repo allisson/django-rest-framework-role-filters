@@ -1,11 +1,3 @@
-from rest_framework.viewsets import ModelViewSet
-
-__all__ = [
-    'RoleFilterMixin',
-    'RoleFilterModelViewSet'
-]
-
-
 class RoleFilterMixin(object):
     role_filter_group = None
     role_id = None
@@ -48,7 +40,3 @@ class RoleFilterMixin(object):
         if filtered_serializer is None:
             return serializer_class(*args, **kwargs)
         return filtered_serializer
-
-
-class RoleFilterModelViewSet(RoleFilterMixin, ModelViewSet):
-    pass
