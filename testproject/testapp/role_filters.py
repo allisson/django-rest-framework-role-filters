@@ -10,7 +10,7 @@ class AdminRoleFilter(RoleFilter):
 class UserRoleFilter(RoleFilter):
     role_id = 'user'
 
-    def get_allowed_actions(self, request, view):
+    def get_allowed_actions(self, request, view, obj=None):
         return ['create', 'list', 'retrieve', 'update', 'partial_update']
 
     def get_queryset(self, request, view, queryset):
@@ -31,3 +31,23 @@ class UserRoleFilter(RoleFilter):
             'user',
         )
         return serializer_class(*args, fields=fields, **kwargs)
+
+
+class ObjLevelUserRoleFilter(UserRoleFilter):
+    role_id = 'obj_level_user'
+
+    def get_allowed_actions(self, request, view, obj=None):
+        if obj is None:
+            return ['create', 'list', 'retrieve', 'update', 'partial_update']
+        else:
+            # This is strange but enough for tests. In real app you should probably check
+            # user against some obj fields.
+            return ['retrieve', 'partial_update']
+
+
+
+class DeprecatedUserRoleFilter(UserRoleFilter):
+    role_id = 'deprecated_user'
+
+    def get_allowed_actions(self, request, view):
+        return ['create', 'list', 'retrieve', 'update', 'partial_update']

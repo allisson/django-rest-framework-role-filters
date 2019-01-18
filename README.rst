@@ -47,7 +47,11 @@ Create role_filters.py with your roles definitions
     class UserRoleFilter(RoleFilter):
         role_id = 'user'
 
-        def get_allowed_actions(self, request, view):
+        def get_allowed_actions(self, request, view, obj=None):
+            # This example returns same list both for "global permissions" check,
+            # and for "object" permissions, but different list may be returned
+            # if `obj` argument is not None, and this list will be used to check
+            # if action is allowed during call to `ViewSet.check_object_permissions`
             return ['create', 'list', 'retrieve', 'update', 'partial_update']
 
         def get_queryset(self, request, view, queryset):
@@ -94,16 +98,17 @@ Create viewset and override get_role_id method
 
 If role_id is 'admin':
 
-* All actions is allowed
-* The default queryset is returned - Post.objects.all()
-* The default serializer_class is used - PostSerializer
-* The default viewset get_serializer method is used
+* All actions are allowed
+* The default queryset is returned - :code:`Post.objects.all()`
+* The default :code:`serializer_class` is used - :code:`PostSerializer`
+* The default viewset :code:`get_serializer` method is used
 
 If role_id is 'user':
 
-* Only actions 'create', 'list', 'retrieve', 'update', 'partial_update' is allowed
+* Only actions 'create', 'list', 'retrieve', 'update', 'partial_update' are allowed
 * The queryset is filtered by user
-* The serializer_class PostSerializerForUser is used
-* The serializer initializing with fields kwargs
+* The :code:`serializer_class=PostSerializerForUser` is used
+* The serializer initializing with :code:`fields` kwargs  (e.g. for modified serializer as described in
+  `DRF: Dynamically modifying fields <https://www.django-rest-framework.org/api-guide/serializers/#dynamically-modifying-fields>`_)
 
 Check `testapp example <https://github.com/allisson/django-rest-framework-role-filters/tree/master/testproject/testapp>`_ code implementation.

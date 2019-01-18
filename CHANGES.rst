@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+0.2.4
+~~~~~
+
+* Using mixin approach for RoleFilterModelViewSet: code moved to RoleFilterMixin.
+* get_allowed_actions now also accepts :code:`obj` argument that is used to verify actions
+  allowed during :code:`check_object_permissions`.
+
 0.2.3
 ~~~~~
 
