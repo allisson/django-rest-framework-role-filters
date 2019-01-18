@@ -103,3 +103,6 @@ ENV/
 
 # sqlite database
 *.sqlite3
+
+# editors
+.vscode/
