@@ -1,19 +1,24 @@
+dist: xenial
 language: python
 python:
-  - "2.7"
-  - "3.4"
   - "3.5"
   - "3.6"
+  - "3.7"
 env:
-  - DRF_VERSION=3.9.0
-  - DRF_VERSION=3.8.2
-  - DRF_VERSION=3.7.7
-  - DRF_VERSION=3.6.4
-  - DRF_VERSION=3.5.4
-# command to install dependencies
+  - DRF_VERSION=3.9.1 DJANGO_VERSION=1.11.18
+  - DRF_VERSION=3.9.1 DJANGO_VERSION=2.0.10
+  - DRF_VERSION=3.9.1 DJANGO_VERSION=2.1.5
+  - DRF_VERSION=3.8.2 DJANGO_VERSION=1.11.18
+  - DRF_VERSION=3.8.2 DJANGO_VERSION=2.0.10
+  - DRF_VERSION=3.8.2 DJANGO_VERSION=2.1.5
+  - DRF_VERSION=3.7.7 DJANGO_VERSION=1.11.18
+  - DRF_VERSION=3.7.7 DJANGO_VERSION=2.0.10
+  - DRF_VERSION=3.7.7 DJANGO_VERSION=2.1.5
+  - DRF_VERSION=3.6.4 DJANGO_VERSION=1.11.18
+  - DRF_VERSION=3.5.4 DJANGO_VERSION=1.11.18
 install:
-  - pip install -r requirements-dev.txt
-  - pip install -q djangorestframework==$DRF_VERSION
+  - pip install -q -r requirements-dev.txt
+  - pip install -q djangorestframework==$DRF_VERSION django==$DJANGO_VERSION
 # command to run tests
 script:
   cd testproject && pytest

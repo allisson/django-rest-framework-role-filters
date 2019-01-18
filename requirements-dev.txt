@@ -1,6 +1,6 @@
 -r requirements.txt
 codecov
-django>=1.11,<2.0
+django>=1.11
 pytest>=3.6
 pytest-cov
 pytest-django
