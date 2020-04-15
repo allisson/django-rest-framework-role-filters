@@ -27,7 +27,7 @@ class PostSerializer(serializers.ModelSerializer):
         # From http://www.django-rest-framework.org/api-guide/serializers/#example
         fields = kwargs.pop('fields', None)
 
-        super(PostSerializer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         if fields is not None:
             allowed = set(fields)
