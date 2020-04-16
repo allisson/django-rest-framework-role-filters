@@ -1,10 +1,10 @@
+from .role_filters import RoleFilterGroup
 
 __all__ = ['RoleFilterMixin']
 
 
 class RoleFilterMixin:
     role_filter_classes = None
-    role_filter_group_class = None
     role_filter_group = None
     role_id = None
 
@@ -59,7 +59,7 @@ class RoleFilterMixin:
             )
 
     def get_role_filter_group(self):
-        return self.role_filter_group_class(role_filters=self.get_role_filters())
+        return RoleFilterGroup(role_filters=self.get_role_filters())
 
     def get_role_filters(self):
         return [role_filter() for role_filter in self.role_filter_classes]

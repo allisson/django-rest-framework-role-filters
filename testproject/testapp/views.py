@@ -1,4 +1,3 @@
-from rest_framework_role_filters.role_filters import RoleFilterGroup
 from rest_framework_role_filters.viewsets import RoleFilterModelViewSet
 
 from .models import Post
@@ -9,7 +8,6 @@ from .serializers import PostSerializer
 class PostViewSet(RoleFilterModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    role_filter_group_class = RoleFilterGroup
     role_filter_classes = [
         AdminRoleFilter,
         UserRoleFilter,

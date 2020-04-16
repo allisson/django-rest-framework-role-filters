@@ -76,8 +76,7 @@ Create role_filters.py with your roles definitions
 Create viewset and override get_role_id method
 
 .. code:: python
-    
-    from rest_framework_role_filters.role_filters import RoleFilterGroup
+
     from rest_framework_role_filters.viewsets import RoleFilterModelViewSet
 
     from .models import Post
@@ -89,7 +88,6 @@ Create viewset and override get_role_id method
         queryset = Post.objects.all()
         serializer_class = PostSerializer
         role_filter_classes = [AdminRoleFilter, UserRoleFilter]
-        role_filter_group_class = RoleFilterGroup
 
         def get_role_id(self, request):
             return request.user.role.role_id
