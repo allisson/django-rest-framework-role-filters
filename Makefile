@@ -15,6 +15,11 @@ clean-dist:
 
 clean: clean-pyc clean-dist
 
+lint:
+	flake8 --ignore=E501,W503 **/*.py
+	isort --check-only **/*.py
+	black --check --quiet **/*.py
+
 test:
 	cd testproject && pytest
 

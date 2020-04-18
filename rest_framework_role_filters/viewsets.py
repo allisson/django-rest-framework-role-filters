@@ -1,9 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
+
 from .mixins import RoleFilterMixin
 
-__all__ = [
-    'RoleFilterModelViewSet'
-]
+__all__ = ["RoleFilterModelViewSet"]
 
 
 class RoleFilterModelViewSet(RoleFilterMixin, ModelViewSet):

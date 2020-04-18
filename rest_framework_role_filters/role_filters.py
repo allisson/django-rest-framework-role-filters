@@ -1,6 +1,7 @@
 import warnings
 
-__all__ = ['RoleFilter', 'RoleFilterGroup']
+__all__ = ["RoleFilter", "RoleFilterGroup"]
+
 
 class RoleFilter:
     role_id = None
@@ -20,9 +21,9 @@ class RoleFilter:
         Should NOT return `None`.
 
         """
-        actions = getattr(view, 'action_map', {}) or {}
+        actions = getattr(view, "action_map", {}) or {}
         actions = list(actions.values())
-        actions = actions or ['create', 'list', 'retrieve', 'update', 'partial_update', 'destroy']
+        actions = actions or ["create", "list", "retrieve", "update", "partial_update", "destroy"]
         return actions
 
     def get_queryset(self, request, view, queryset):
@@ -53,12 +54,12 @@ class RoleFilterGroup:
 
     def get_allowed_actions(self, role_id, request, view, obj=None):
         try:
-            allowed_actions = self.trigger_filter('get_allowed_actions', role_id, request, view, obj=obj)
+            allowed_actions = self.trigger_filter("get_allowed_actions", role_id, request, view, obj=obj)
         except TypeError:
-            allowed_actions = self.trigger_filter('get_allowed_actions', role_id, request, view)
+            allowed_actions = self.trigger_filter("get_allowed_actions", role_id, request, view)
             warnings.warn(
                 "RoleFilter.get_allowed_actions without support for `obj` argument is deprecated",
-                PendingDeprecationWarning
+                PendingDeprecationWarning,
             )
 
         if allowed_actions is None:
@@ -66,10 +67,12 @@ class RoleFilterGroup:
         return allowed_actions
 
     def get_queryset(self, role_id, request, view, queryset):
-        return self.trigger_filter('get_queryset', role_id, request, view, queryset)
+        return self.trigger_filter("get_queryset", role_id, request, view, queryset)
 
     def get_serializer_class(self, role_id, request, view):
-        return self.trigger_filter('get_serializer_class', role_id, request, view)
+        return self.trigger_filter("get_serializer_class", role_id, request, view)
 
     def get_serializer(self, role_id, request, view, serializer_class, *args, **kwargs):
-        return self.trigger_filter('get_serializer', role_id, request, view, serializer_class, *args, **kwargs)
+        return self.trigger_filter(
+            "get_serializer", role_id, request, view, serializer_class, *args, **kwargs
+        )

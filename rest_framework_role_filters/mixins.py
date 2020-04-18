@@ -1,6 +1,6 @@
 from .role_filters import RoleFilterGroup
 
-__all__ = ['RoleFilterMixin']
+__all__ = ["RoleFilterMixin"]
 
 
 class RoleFilterMixin:
@@ -18,8 +18,7 @@ class RoleFilterMixin:
         allowed_actions = self.role_filter_group.get_allowed_actions(self.role_id, request, self)
         if self.action not in allowed_actions:
             self.permission_denied(
-                request,
-                message='action={} not allowed for role={}'.format(self.action, self.role_id)
+                request, message="action={} not allowed for role={}".format(self.action, self.role_id)
             )
 
     def get_queryset(self):
@@ -40,7 +39,7 @@ class RoleFilterMixin:
 
     def get_serializer(self, *args, **kwargs):
         serializer_class = self.get_serializer_class()
-        kwargs['context'] = self.get_serializer_context()
+        kwargs["context"] = self.get_serializer_context()
         filtered_serializer = self.role_filter_group.get_serializer(
             self.role_id, self.request, self, serializer_class, *args, **kwargs
         )
@@ -54,8 +53,7 @@ class RoleFilterMixin:
         allowed_actions = self.role_filter_group.get_allowed_actions(self.role_id, request, self, obj=obj)
         if self.action not in allowed_actions:
             self.permission_denied(
-                request,
-                message='action={} not allowed for role={}'.format(self.action, self.role_id)
+                request, message="action={} not allowed for role={}".format(self.action, self.role_id)
             )
 
     def get_role_filter_group(self):

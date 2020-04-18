@@ -1,7 +1,10 @@
 -r requirements.txt
+black
 codecov
-django>=1.11
-pytest>=3.6
+django>=2.2.12
+flake8
+isort
+pytest
 pytest-cov
 pytest-django
 twine

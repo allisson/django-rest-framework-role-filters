@@ -1,7 +1,7 @@
 from rest_framework_role_filters.viewsets import RoleFilterModelViewSet
 
 from .models import Post
-from .role_filters import AdminRoleFilter, UserRoleFilter, ObjLevelUserRoleFilter, DeprecatedUserRoleFilter
+from .role_filters import AdminRoleFilter, DeprecatedUserRoleFilter, ObjLevelUserRoleFilter, UserRoleFilter
 from .serializers import PostSerializer
 
 
