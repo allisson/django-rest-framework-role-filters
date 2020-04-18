@@ -26,7 +26,7 @@ with codecs.open(os.path.join(here, 'CHANGES.rst'), encoding='utf-8') as f:
 
 
 install_requirements = [
-    'djangorestframework>=3.9.4',
+    'djangorestframework>=3.10.3',
 ]
 tests_requirements = [
     'django',
