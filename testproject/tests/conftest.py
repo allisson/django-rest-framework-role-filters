@@ -1,8 +1,8 @@
 from __future__ import absolute_import
+
 import pytest
 from rest_framework.test import APIClient
-
-from testapp.models import UserRole, Post
+from testapp.models import Post, UserRole
 
 
 @pytest.fixture

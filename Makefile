@@ -15,6 +15,11 @@ clean-dist:
 
 clean: clean-pyc clean-dist
 
+lint:
+	flake8 --ignore=E501,W503 rest_framework_role_filters/*.py testproject/*.py
+	isort --check-only **/*.py
+	black --check --quiet rest_framework_role_filters/*.py testproject/*.py
+
 test:
 	cd testproject && pytest
 

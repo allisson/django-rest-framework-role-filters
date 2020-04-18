@@ -2,7 +2,7 @@ import codecs
 import os
 import re
 
-from setuptools import setup, find_packages, Command
+from setuptools import Command, find_packages, setup
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -26,7 +26,7 @@ with codecs.open(os.path.join(here, 'CHANGES.rst'), encoding='utf-8') as f:
 
 
 install_requirements = [
-    'djangorestframework>=3.5.4',
+    'djangorestframework>=3.9.4',
 ]
 tests_requirements = [
     'django',
@@ -67,9 +67,9 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development :: Libraries :: Application Frameworks',
         'Topic :: Software Development :: Libraries :: Python Modules',
