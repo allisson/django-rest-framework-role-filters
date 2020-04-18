@@ -11,24 +11,24 @@ pytestmark = pytest.mark.django_db
 def test_get_allowed_actions(
         post1, post2, user_with_admin_role, user_with_user_role,
         client_admin_logged, client_user_logged):
-    response = client_admin_logged.delete(reverse('testapp:posts-detail', args=[post1.id]))
+    response = client_admin_logged.delete(reverse('testapp:post-detail', args=[post1.id]))
     assert response.status_code == status.HTTP_204_NO_CONTENT
 
-    response = client_user_logged.delete(reverse('testapp:posts-detail', args=[post2.id]))
+    response = client_user_logged.delete(reverse('testapp:post-detail', args=[post2.id]))
     assert response.status_code == status.HTTP_403_FORBIDDEN
     assert response.data == {'detail': 'action=destroy not allowed for role=user'}
 
 
 def test_get_allowed_actions_with_no_declared_role_inside_view(
         post1, user_with_no_declared_role_in_view, client_user_logged):
-    response = client_user_logged.delete(reverse('testapp:posts-detail', args=[post1.id]))
+    response = client_user_logged.delete(reverse('testapp:post-detail', args=[post1.id]))
     assert response.status_code == status.HTTP_403_FORBIDDEN
     assert response.data == {'detail': 'action=destroy not allowed for role=no_post_access'}
 
 
 def test_get_allowed_actions_with_obj_level_role_inside_view(
         post3, user_with_obj_level_role_in_view, client_user_logged):
-    url = reverse('testapp:posts-detail', args=[post3.id])
+    url = reverse('testapp:post-detail', args=[post3.id])
     json_c_t = 'application/json'
 
     response = client_user_logged.get(url)
@@ -49,7 +49,7 @@ def test_get_allowed_actions_with_obj_level_role_inside_view(
     )
     assert response.status_code == status.HTTP_200_OK
 
-    response = client_user_logged.get(reverse('testapp:posts-list'))
+    response = client_user_logged.get(reverse('testapp:post-list'))
     assert response.status_code == status.HTTP_200_OK
 
 
@@ -57,7 +57,7 @@ def test_deprecated_get_allowed_actions(
         post4, user_with_deprecated_role_in_view, client_user_logged):
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
-        response = client_user_logged.delete(reverse('testapp:posts-detail', args=[post4.id]))
+        response = client_user_logged.delete(reverse('testapp:post-detail', args=[post4.id]))
         assert response.status_code == status.HTTP_403_FORBIDDEN
         assert response.data == {'detail': 'action=destroy not allowed for role=deprecated_user'}
 
@@ -72,7 +72,7 @@ def test_deprecated_get_allowed_actions(
 def test_get_queryset(
         post1, post2, user_with_admin_role, user_with_user_role,
         client_admin_logged, client_user_logged):
-    url = reverse('testapp:posts-list')
+    url = reverse('testapp:post-list')
 
     response = client_admin_logged.get(url)
     assert response.status_code == status.HTTP_200_OK
@@ -86,7 +86,7 @@ def test_get_queryset(
 def test_get_serializer_class(
         post1, post2, user_with_admin_role, user_with_user_role,
         client_admin_logged, client_user_logged):
-    url = reverse('testapp:posts-list')
+    url = reverse('testapp:post-list')
 
     response = client_admin_logged.get(url)
     assert response.status_code == status.HTTP_200_OK
@@ -100,7 +100,7 @@ def test_get_serializer_class(
 def test_get_serializer(
         post1, post2, user_with_admin_role, user_with_user_role,
         client_admin_logged, client_user_logged):
-    url = reverse('testapp:posts-list')
+    url = reverse('testapp:post-list')
 
     response = client_admin_logged.get(url)
     assert response.status_code == status.HTTP_200_OK
