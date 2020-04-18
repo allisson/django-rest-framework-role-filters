@@ -1,6 +1,19 @@
 Changelog
 ---------
 
+1.0.0
+~~~~~
+
+* Replace RoleFilterMixin role_filter_group with role_filter_classes (thanks @hugobrilhante).
+* Replace Travis with Github Actions.
+* Drop Python 3.5 support.
+* Drop DRF 3.5.x/3.6.x/3.7.x/3.8.x/3.9.x support.
+* Add suport for DRF 3.10.x/3.11.x.
+* Drop support for Django 1.11.x/2.0.x/2.1.x.
+* Add support for Django 2.2.x/3.0.x. 
+* Apply black format on project.
+* Apply isort on project.
+
 0.3.0
 ~~~~~
 
