@@ -7,84 +7,72 @@ from testapp.models import Post, UserRole
 
 @pytest.fixture
 def user_with_admin_role(django_user_model):
-    user = django_user_model.objects.create_user('admin', 'admin@email.com', '123456')
-    UserRole.objects.create(user=user, role_id='admin')
+    user = django_user_model.objects.create_user("admin", "admin@email.com", "123456")
+    UserRole.objects.create(user=user, role_id="admin")
     return user
 
 
 @pytest.fixture
 def user_with_user_role(django_user_model):
-    user = django_user_model.objects.create_user('user', 'user@email.com', '123456')
-    UserRole.objects.create(user=user, role_id='user')
+    user = django_user_model.objects.create_user("user", "user@email.com", "123456")
+    UserRole.objects.create(user=user, role_id="user")
     return user
 
 
 @pytest.fixture
 def user_with_no_declared_role_in_view(django_user_model):
-    user = django_user_model.objects.create_user('user', 'user@email.com', '123456')
-    UserRole.objects.create(user=user, role_id='no_post_access')
+    user = django_user_model.objects.create_user("user", "user@email.com", "123456")
+    UserRole.objects.create(user=user, role_id="no_post_access")
     return user
 
 
 @pytest.fixture
 def user_with_obj_level_role_in_view(django_user_model):
-    user = django_user_model.objects.create_user('user', 'user@email.com', '123456')
-    UserRole.objects.create(user=user, role_id='obj_level_user')
+    user = django_user_model.objects.create_user("user", "user@email.com", "123456")
+    UserRole.objects.create(user=user, role_id="obj_level_user")
     return user
 
 
 @pytest.fixture
 def user_with_deprecated_role_in_view(django_user_model):
-    user = django_user_model.objects.create_user('user', 'user@email.com', '123456')
-    UserRole.objects.create(user=user, role_id='deprecated_user')
+    user = django_user_model.objects.create_user("user", "user@email.com", "123456")
+    UserRole.objects.create(user=user, role_id="deprecated_user")
     return user
 
 
 @pytest.fixture
 def client_admin_logged(client):
     client = APIClient()
-    client.login(username='admin', password='123456')
+    client.login(username="admin", password="123456")
     return client
 
 
 @pytest.fixture
 def client_user_logged(client):
     client = APIClient()
-    client.login(username='user', password='123456')
+    client.login(username="user", password="123456")
     return client
 
 
 @pytest.fixture
 def post1(user_with_admin_role):
-    return Post.objects.create(
-        user=user_with_admin_role,
-        title='My Post Title',
-        body='My Post Body'
-    )
+    return Post.objects.create(user=user_with_admin_role, title="My Post Title", body="My Post Body")
 
 
 @pytest.fixture
 def post2(user_with_user_role):
-    return Post.objects.create(
-        user=user_with_user_role,
-        title='My Post Title',
-        body='My Post Body'
-    )
+    return Post.objects.create(user=user_with_user_role, title="My Post Title", body="My Post Body")
 
 
 @pytest.fixture
 def post3(user_with_obj_level_role_in_view):
     return Post.objects.create(
-        user=user_with_obj_level_role_in_view,
-        title='My Post Title',
-        body='My Post Body'
+        user=user_with_obj_level_role_in_view, title="My Post Title", body="My Post Body"
     )
 
 
 @pytest.fixture
 def post4(user_with_deprecated_role_in_view):
     return Post.objects.create(
-        user=user_with_deprecated_role_in_view,
-        title='My Post Title',
-        body='My Post Body'
+        user=user_with_deprecated_role_in_view, title="My Post Title", body="My Post Body"
     )

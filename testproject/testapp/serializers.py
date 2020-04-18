@@ -9,23 +9,23 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
-            'admin_only_field',
-            'body',
-            'created_at',
-            'id',
-            'serializer_name',
-            'title',
-            'updated_at',
-            'user',
+            "admin_only_field",
+            "body",
+            "created_at",
+            "id",
+            "serializer_name",
+            "title",
+            "updated_at",
+            "user",
         )
         read_only_fields = (
-            'id',
-            'user',
+            "id",
+            "user",
         )
 
     def __init__(self, *args, **kwargs):
         # From http://www.django-rest-framework.org/api-guide/serializers/#example
-        fields = kwargs.pop('fields', None)
+        fields = kwargs.pop("fields", None)
 
         super().__init__(*args, **kwargs)
 
@@ -36,13 +36,13 @@ class PostSerializer(serializers.ModelSerializer):
                 self.fields.pop(field_name)
 
     def validate(self, data):
-        data['user'] = self.context['request'].user
+        data["user"] = self.context["request"].user
         return data
 
     def get_serializer_name(self, obj):
-        return 'PostSerializer'
+        return "PostSerializer"
 
 
 class PostSerializerForUser(PostSerializer):
     def get_serializer_name(self, obj):
-        return 'PostSerializerForUser'
+        return "PostSerializerForUser"
