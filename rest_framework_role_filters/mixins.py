@@ -8,13 +8,16 @@ class RoleFilterMixin:
     role_filter_group = None
     role_id = None
 
+    @property
+    def role_filter_group(self):
+        return self.get_role_filter_group()
+
     def get_role_id(self, request):
         pass
 
     def initial(self, request, *args, **kwargs):
         super().initial(request, *args, **kwargs)
         self.role_id = self.get_role_id(request)
-        self.role_filter_group = self.get_role_filter_group()
         allowed_actions = self.role_filter_group.get_allowed_actions(self.role_id, request, self)
         if self.action not in allowed_actions:
             self.permission_denied(
