@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+1.0.1
+~~~~~
+
+* Create property role_filter_group on RoleFilterMixin to avoid error with get_schema_view.
+
 1.0.0
 ~~~~~
 

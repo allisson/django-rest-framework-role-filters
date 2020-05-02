@@ -7,5 +7,7 @@ isort
 pytest
 pytest-cov
 pytest-django
+pyyaml
 twine
+uritemplate
 wheel

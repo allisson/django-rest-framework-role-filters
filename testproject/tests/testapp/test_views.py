@@ -101,3 +101,10 @@ def test_get_serializer(
     response = client_user_logged.get(url)
     assert response.status_code == status.HTTP_200_OK
     assert "admin_only_field" not in response.data["results"][0]
+
+
+def test_schema_view(user_with_user_role, client_user_logged):
+    url = reverse("openapi-schema")
+
+    response = client_user_logged.get(url)
+    assert response.status_code == status.HTTP_200_OK
