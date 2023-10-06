@@ -31,7 +31,7 @@ How to use
 Create role_filters.py with your roles definitions
 
 .. code:: python
-    
+
     from rest_framework_role_filters.role_filters import RoleFilter
 
     from .serializers import PostSerializerForUser

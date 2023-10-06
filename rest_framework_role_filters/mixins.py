@@ -5,7 +5,6 @@ __all__ = ["RoleFilterMixin"]
 
 class RoleFilterMixin:
     role_filter_classes = None
-    role_filter_group = None
     role_id = None
 
     @property

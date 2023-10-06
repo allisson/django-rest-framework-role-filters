@@ -36,11 +36,19 @@ def test_get_allowed_actions_with_obj_level_role_inside_view(
     response = client_user_logged.get(url)
     assert response.status_code == status.HTTP_200_OK
 
-    response = client_user_logged.put(url, data={"title": "new", "body": "new_body"}, content_type=json_c_t,)
+    response = client_user_logged.put(
+        url,
+        data={"title": "new", "body": "new_body"},
+        content_type=json_c_t,
+    )
     assert response.status_code == status.HTTP_403_FORBIDDEN
     assert response.data == {"detail": "action=update not allowed for role=obj_level_user"}
 
-    response = client_user_logged.patch(url, data=json.dumps({"title": "new title"}), content_type=json_c_t,)
+    response = client_user_logged.patch(
+        url,
+        data=json.dumps({"title": "new title"}),
+        content_type=json_c_t,
+    )
     assert response.status_code == status.HTTP_200_OK
 
     response = client_user_logged.get(reverse("testapp:post-list"))
