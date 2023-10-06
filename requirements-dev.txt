@@ -7,3 +7,4 @@ twine
 wheel
 pre-commit
 uritemplate
+pytz
