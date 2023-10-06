@@ -13,9 +13,7 @@ jobs:
         drf: ["3.12.4", "3.13.1", "3.14.0"]
         exclude:
           - django: "4.2.4"
-            drf:
-              - "3.12.4"
-              - "3.13.1"
+            drf: ["3.12.4", "3.13.1"]
 
     steps:
       - uses: actions/checkout@v4
