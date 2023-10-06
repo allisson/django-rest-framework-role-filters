@@ -1,13 +1,9 @@
 -r requirements.txt
-black
-codecov
-django>=2.2.12
-flake8
-isort
+django>=3.2.22
 pytest
 pytest-cov
 pytest-django
-pyyaml
 twine
-uritemplate
 wheel
+pre-commit
+uritemplate

@@ -1,6 +1,14 @@
 Changelog
 ---------
 
+1.1.0
+~~~~~
+
+* Drop support for older versions of Python (3.6/3.7).
+* Drop support for older versions of DRF (3.10.x/3.11.x).
+* Drop support for older versions of Django (2.2.x/3.0.x).
+* Add pre-commit support.
+
 1.0.1
 ~~~~~
 
@@ -15,7 +23,7 @@ Changelog
 * Drop DRF 3.5.x/3.6.x/3.7.x/3.8.x/3.9.x support.
 * Add suport for DRF 3.10.x/3.11.x.
 * Drop support for Django 1.11.x/2.0.x/2.1.x.
-* Add support for Django 2.2.x/3.0.x. 
+* Add support for Django 2.2.x/3.0.x.
 * Apply black format on project.
 * Apply isort on project.
 
